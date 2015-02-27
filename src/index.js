@@ -14,8 +14,8 @@ var AngryRooster = function(config) {
     })
 }
 
-AngryRooster.prototype.tweet = function* (message) {
-    return yield this.T.postAsync('statuses/update', {status: message})
+AngryRooster.prototype.tweet = function (message) {
+    return this.T.postAsync('statuses/update', {status: message})
 }
 
 AngryRooster.prototype.followByPhrase = function* (options) {
