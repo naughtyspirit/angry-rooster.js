@@ -32,7 +32,7 @@ AngryRooster.prototype.followByPhrase = function* (options) {
         return tweet.user.id
     }))
 
-    yield this.followUsers(userIds)
+    yield this.followUsersById(userIds)
 }
 
 AngryRooster.prototype.followUserFollowers = function* (options) {
@@ -48,12 +48,19 @@ AngryRooster.prototype.followUserFollowers = function* (options) {
     var userIds = users.map(function(user) {
         return user.id
     })
-    yield this.followUsers(userIds)
+    yield this.followUsersById(userIds)
 }
 
-AngryRooster.prototype.followUsers = function* (userIds) {
+AngryRooster.prototype.followUsersById = function* (userIds) {
     for(var userId of userIds) {
         this.T.postAsync('friendships/create', {user_id: userId})
+    }
+}
+
+
+AngryRooster.prototype.followUsersByUsername = function* (usernames) {
+    for(var username of usernames) {
+        this.T.postAsync('friendships/create', {screen_name: username})
     }
 }
 
